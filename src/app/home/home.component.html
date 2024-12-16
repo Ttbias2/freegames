@@ -1,0 +1,59 @@
+<div>
+    <header class="flexColumn">
+        <p style="font-size: 25px;">Popular games</p>
+        <section  id="carrousel">
+            <div id="carrouselElements">
+                @for (game of popularGames; track game.id) {
+                <article id="popGame" routerLink="/game" (click)="searchGame(game.id)">
+                    <img src="{{game.thumbnail}}" alt="">
+                    <div id="popularGameDetail">
+                        <h2>{{game.title}}</h2>
+                        <p>{{game.short_description}}</p>
+                    </div>
+                </article>
+                }
+            </div>
+            <div class="pnBtnsCont">
+                <button (click)="previousPosition()" class="pnBtns">previus</button>
+                <button (click)="nextPosition()" class="pnBtns">next</button>
+            </div>
+        </section>
+    </header>
+    <body>
+        <aside id="gamesFilter" class="flexColumn ">
+            <div class="flexColumn baseAside">
+                <label><input type="radio" name="platform" value="all" [defaultChecked]="true" (click)="filter('')">All</label>
+                <label><input type="radio" name="platform" value="pc" (click)="filter('')">PC</label>
+                <label><input type="radio" name="platform" value="browser" (click)="filter('')">Browser</label>
+            </div>
+            <div class="baseAside genres">
+                @for (genre of genres; track $index) {
+                <button (click)="filter(genre)" class="genre">{{genre}}</button>
+                }
+            </div>
+
+            <div id="actualGenre" class="baseAside">{{genre}}</div>
+
+            <div class="baseAside">
+                <button class="genre" (click)="cleanFilt()">Clear</button>
+            </div>
+        </aside>
+        <section id="games">
+            @for (game of games; track game.id) {
+            <article routerLink="/game" (click)="searchGame(game.id)" class="game">
+                <div style="overflow: hidden;">
+                    <img src="{{game.thumbnail}}" alt="">
+                </div>
+                <div style="padding: 8px;">
+                    <h2>{{game.title}}</h2>
+                    <p>{{game.short_description}}</p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p>{{game.platform}}</p>
+                        <p>{{game.genre}}</p>
+                    </div>
+                </div>
+            </article>
+            }
+        </section>
+    </body>
+</div>

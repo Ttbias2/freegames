@@ -1,0 +1,50 @@
+<div id="container">
+@if (game==null) {
+    <p style="margin: auto; font-size: 50px;">Loading...</p>
+}
+@else {
+    <h1 style="font-size: 50px;">{{game?.title}}</h1>
+    <section id="description" class="base">
+        <div id="gameImg">
+            <img src="{{game?.thumbnail}}" alt="" class="principalImg">
+            <div class="miniImgs">
+                <img src="{{game?.thumbnail}}" alt="" class="mini" (click)="changeImage(game?.thumbnail)">
+                @for (img of game?.screenshots; track $index) {
+                    <img src="{{img.image}}" alt="" class="mini" (click)="changeImage(img.image)">
+                }
+            </div>
+            <a href="{{game?.game_url}}" target="_blank">Play</a>
+
+        </div>
+        <div id="gameDesc">
+            <h2>Description</h2>
+            <p>{{game?.description}}</p>
+        </div>
+    </section>
+    <h2>Details</h2>
+    <section class="grid base">
+        <p>Status: {{game?.status}}</p>
+        <p>Genre: {{game?.genre}}</p>
+        <p>Platform: {{game?.platform}}</p>
+        <p>Release date: {{game?.release_date}}</p>
+        <p>Publisher: {{game?.publisher}}</p>
+        <p>Developer: {{game?.developer}}</p>
+    </section>
+    <h2>Requirements</h2>
+    <section class="grid base">
+        @if (game?.platform == "Windows") {
+
+        <p>OS: {{game?.minimum_system_requirements?.os}}</p>
+        <p>processor: {{game?.minimum_system_requirements?.processor}}</p>
+        <p>Memory: {{game?.minimum_system_requirements?.memory}}</p>
+        <p>Graphics: {{game?.minimum_system_requirements?.graphics}}</p>
+        <p>Storage: {{game?.minimum_system_requirements?.storage}}</p>
+        }
+        @else {
+        <p>Browser games can run in any device</p>
+        }
+    </section>
+}
+
+    
+</div>

@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'perso';
+    src: url(./assets/fonts/Silkscreen-Regular.ttf);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #002052;
+    color: rgb(238, 234, 230);
+    font-family: 'perso';
+}
+
+button{
+    font-family: 'perso';
+}
+
+button:hover{
+    cursor: pointer;
+}
